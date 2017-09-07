@@ -7,3 +7,7 @@ oauth:
 
 server:
 	lein run -- --port=3000
+
+deploy:
+	lein uberjar
+	git push heroku
