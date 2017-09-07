@@ -12,6 +12,7 @@
                  [conman "0.6.8"]
                  [cprop "0.1.11"]
                  [funcool/struct "1.0.0"]
+                 [hiccup "1.0.5"]
                  [luminus-http-kit "0.1.4"]
                  [luminus-migrations "0.4.1"]
                  [luminus-nrepl "0.1.4"]

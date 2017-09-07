@@ -29,7 +29,7 @@
       [:a.navbar-brand {:href "#/"} "sportball"]
       [:ul.nav.navbar-nav
        [nav-link "#/" "Home" :home collapsed?]
-       [nav-link "#/about" "About" :about collapsed?]
+       #_[nav-link "#/about" "About" :about collapsed?]
        [nav-link "/oauth2/yahoo" "Login" :login collapsed?]]]]))
 
 (defn about-page []

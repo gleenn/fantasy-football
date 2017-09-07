@@ -9,7 +9,7 @@ deoauth:
 	sudo hostess add sportball.test 127.0.0.1
 	#sudo pfctl -f
 
-server:
+start:
 	lein run -- --port=3000
 
 deploy:

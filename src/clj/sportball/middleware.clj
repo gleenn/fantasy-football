@@ -107,7 +107,7 @@
           :scopes           ["fspt-w"]
           :launch-uri       "/oauth2/yahoo"
           :redirect-uri     "/oauth2/yahoo/callback"
-          :landing-uri      "/"}})
+          :landing-uri      "/fantasy"}})
       wrap-webjars
       (wrap-defaults
         (-> site-defaults
