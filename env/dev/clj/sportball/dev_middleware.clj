@@ -7,6 +7,6 @@
   (-> handler
       wrap-reload
       wrap-error-page
-      (wrap-exceptions {                                    ;:app-namespaces     ['your-ns-1 'my.ns.to-show]
-                        :skip-prone?        (fn [req] (not-browser? req))
-                        :print-stacktraces? true})))
+      (wrap-exceptions {;:app-namespaces     ['your-ns-1 'my.ns.to-show]
+                        ;:skip-prone?        (fn [req] (not-browser? req))
+                        :print-stacktraces? false})))
