@@ -115,4 +115,4 @@
             (assoc-in [:session :store] (ttl-memory-store (* 60 30)))
             (assoc-in [:session :cookie-attrs :same-site] :lax)))
       wrap-context
-      wrap-internal-error))
+      #_wrap-internal-error))

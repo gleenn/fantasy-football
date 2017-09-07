@@ -41,10 +41,12 @@
   (shutdown-agents))
 
 (defn start-app [args]
-  (doseq [component (-> args
-                        (parse-opts cli-options)
-                        mount/start-with-args
-                        :started)]
+  (doseq [component (-> (let [parsed-args (parse-opts args cli-options)]
+                          (log/error (str "args" parsed-args))
+                          (println (str "args" parsed-args))
+                          (-> parsed-args
+                              mount/start-with-args
+                              :started)))]
     (log/info component "started")
     (println  component "started"))
   (.addShutdownHook (Runtime/getRuntime) (Thread. stop-app)))
