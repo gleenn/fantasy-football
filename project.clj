@@ -5,7 +5,7 @@
 
   :dependencies [[buddy "1.3.0"]
                  [ch.qos.logback/logback-classic "1.1.7"]
-                 [clj-oauth "1.5.4"]
+                 #_[clj-oauth "1.5.4"]
                  [clj-time "0.14.0"]
                  [cljs-ajax "0.7.2"]
                  [compojure "1.6.0"]
@@ -36,6 +36,7 @@
                  [ring-webjars "0.2.0"]
                  [ring/ring-core "1.6.2"]
                  [ring/ring-defaults "0.3.1"]
+                 [ring-oauth2 "0.1.0"]
                  [secretary "1.2.3"]
                  [selmer "1.11.0"]]
 

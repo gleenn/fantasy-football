@@ -3,9 +3,10 @@
             [ring.util.http-response :refer [ok found]]
             [clojure.java.io :as io]
             [sportball.oauth :as oauth]
-            [clojure.tools.logging :as log]))
+            [clojure.tools.logging :as log]
+            [ring.middleware.oauth2 :refer [wrap-oauth2]]))
 
-(defn oauth-init
+#_(defn oauth-init
   "Initiates the Twitter OAuth"
   [request]
   (-> (oauth/fetch-request-token request)
@@ -13,7 +14,7 @@
       oauth/auth-redirect-uri
       found))
 
-(defn oauth-callback
+#_(defn oauth-callback
   "Handles the callback from Twitter."
   [request_token {:keys [session]}]
   ; oauth request was denied by user
@@ -27,6 +28,6 @@
           (assoc :session
             (assoc session :user-id user_id :screen-name screen_name))))))
 
-(defroutes oauth-routes
+#_(defroutes oauth-routes
   (GET "/oauth/oauth-init" req (oauth-init req))
   (GET "/oauth/oauth-callback" [& req_token :as req] (oauth-callback req_token req)))

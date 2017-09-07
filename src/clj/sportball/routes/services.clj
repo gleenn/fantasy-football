@@ -21,6 +21,7 @@
   [_ binding acc]
   (update-in acc [:letks] into [binding `(:identity ~'+compojure-api-request+)]))
 
+(declare service-routes)
 (defapi service-routes
   {:swagger {:ui "/swagger-ui"
              :spec "/swagger.json"

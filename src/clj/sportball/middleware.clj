@@ -14,7 +14,10 @@
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
             [buddy.auth.accessrules :refer [restrict]]
             [buddy.auth :refer [authenticated?]]
-            [buddy.auth.backends.session :refer [session-backend]])
+            [buddy.auth.backends.session :refer [session-backend]]
+            [ring.middleware.oauth2 :refer [wrap-oauth2]]
+            [sportball.config :refer [env]]
+            [clojure.tools.logging :as log])
   (:import [javax.servlet ServletContext]
            [org.joda.time ReadableInstant]))
 
@@ -95,10 +98,21 @@
 (defn wrap-base [handler]
   (-> ((:middleware defaults) handler)
       wrap-auth
+      (wrap-oauth2
+        {:yahoo
+         {:client-id        (env :client-id) #_"abcabcabc"
+          :client-secret    (env :client-secret) #_"xyzxyzxyzxyzxyz"
+          :authorize-uri    "https://api.login.yahoo.com/oauth2/request_auth" #_"https://github.com/login/oauth/authorize"
+          :access-token-uri "https://api.login.yahoo.com/oauth2/get_token"  #_"https://github.com/login/oauth/access_token"
+          :scopes           ["fspt-r" "fspt-w"] #_["user:email"]
+          :launch-uri       "/oauth2/yahoo" #_"/oauth2/github"
+          :redirect-uri     "/oauth2/yahoo/callback" #_"/oauth2/github/callback"
+          :landing-uri      "/"}})
       wrap-webjars
       (wrap-defaults
         (-> site-defaults
             (assoc-in [:security :anti-forgery] false)
-            (assoc-in  [:session :store] (ttl-memory-store (* 60 30)))))
+            (assoc-in [:session :store] (ttl-memory-store (* 60 30)))
+            (assoc-in [:session :cookie-attrs :same-site] :lax)))
       wrap-context
       wrap-internal-error))
