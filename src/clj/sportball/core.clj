@@ -6,7 +6,9 @@
             [sportball.config :refer [env]]
             [clojure.tools.cli :refer [parse-opts]]
             [clojure.tools.logging :as log]
-            [mount.core :as mount])
+            [cprop.core :refer [load-config]]
+            [cprop.source :as source]
+            [mount.core :refer [args] :as mount])
   (:gen-class))
 
 (def cli-options
@@ -60,5 +62,8 @@
       (migrations/migrate args (select-keys env [:database-url]))
       (System/exit 0))
     :else
-    (start-app args))
-  )
+    (do
+      (prn "Current config:\n" (load-config :merge [(mount/args)
+                                                    (source/from-system-props)
+                                                    (source/from-env)]))
+      (start-app args))))
