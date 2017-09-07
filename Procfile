@@ -1,1 +1,1 @@
-web: java $JVM_OPTS -cp target/uberjar/sportball.jar clojure.main -m sportball.core
+web: java $JVM_OPTS -jar target/sportball-0.1.0-SNAPSHOT-standalone.jar
