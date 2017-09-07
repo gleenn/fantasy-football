@@ -63,7 +63,7 @@
       (System/exit 0))
     :else
     (do
-      (prn "Current config:\n" (load-config :merge [(mount/args)
-                                                    (source/from-system-props)
-                                                    (source/from-env)]))
+      (log/info "Current config:" (load-config :merge [(mount/args)
+                                                       (source/from-system-props)
+                                                       (source/from-env)]))
       (start-app args))))
