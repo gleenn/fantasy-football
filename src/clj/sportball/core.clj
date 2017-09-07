@@ -60,8 +60,4 @@
       (migrations/migrate args (select-keys env [:database-url]))
       (System/exit 0))
     :else
-    (do
-      (log/info "Current config:" (load-config :merge [(mount/args)
-                                                       (source/from-system-props)
-                                                       (source/from-env)]))
-      (start-app args))))
+    (start-app args)))
