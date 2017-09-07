@@ -100,13 +100,13 @@
       wrap-auth
       (wrap-oauth2
         {:yahoo
-         {:client-id        (env :client-id) #_"abcabcabc"
-          :client-secret    (env :client-secret) #_"xyzxyzxyzxyzxyz"
-          :authorize-uri    "https://api.login.yahoo.com/oauth2/request_auth" #_"https://github.com/login/oauth/authorize"
-          :access-token-uri "https://api.login.yahoo.com/oauth2/get_token"  #_"https://github.com/login/oauth/access_token"
-          :scopes           ["fspt-r" "fspt-w"] #_["user:email"]
-          :launch-uri       "/oauth2/yahoo" #_"/oauth2/github"
-          :redirect-uri     "/oauth2/yahoo/callback" #_"/oauth2/github/callback"
+         {:client-id        (env :client-id)
+          :client-secret    (env :client-secret)
+          :authorize-uri    "https://api.login.yahoo.com/oauth2/request_auth"
+          :access-token-uri "https://api.login.yahoo.com/oauth2/get_token"
+          :scopes           ["fspt-w"]
+          :launch-uri       "/oauth2/yahoo"
+          :redirect-uri     "/oauth2/yahoo/callback"
           :landing-uri      "/"}})
       wrap-webjars
       (wrap-defaults
