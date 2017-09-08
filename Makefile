@@ -10,7 +10,8 @@ deoauth:
 	#sudo pfctl -f
 
 start:
-	lein run -- --port=3000
+	lein run -- --port=3000 &
+	lein figwheel
 
 deploy:
 	lein uberjar
