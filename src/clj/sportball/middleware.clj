@@ -9,7 +9,10 @@
             [muuntaja.format.transit :as transit-format]
             [muuntaja.middleware :refer [wrap-format wrap-params]]
             [sportball.config :refer [env]]
-            [ring-ttl-session.core :refer [ttl-memory-store]]
+
+            [ring-ttl-session.core :refer [ttl-memory-store]] ; not used
+
+            [ring.middleware.session.cookie :refer [cookie-store]]
             [ring.middleware.defaults :refer [site-defaults wrap-defaults]]
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
             [buddy.auth.accessrules :refer [restrict]]
@@ -96,7 +99,8 @@
         (wrap-authorization backend))))
 
 (defn wrap-base [handler]
-  (-> ((:middleware defaults) handler)
+  (-> handler
+      ((:middleware defaults))
       wrap-auth
       (wrap-oauth2
         {:yahoo
@@ -113,6 +117,8 @@
         (-> site-defaults
             (assoc-in [:security :anti-forgery] false)
             (assoc-in [:session :store] (ttl-memory-store (* 60 30)))
+            #_(assoc-in [:session :store] (cookie-store {:key (doto log/info (env :cookie-secret-key))}))
+            #_(assoc-in [:session :cookie-name] "example-app-sessions")
             (assoc-in [:session :cookie-attrs :same-site] :lax)))
       wrap-context
       #_wrap-internal-error))

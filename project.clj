@@ -5,7 +5,7 @@
 
   :dependencies [[buddy "1.3.0"]
                  [ch.qos.logback/logback-classic "1.1.7"]
-                 #_[clj-oauth "1.5.4"]
+                 [clj-http "3.7.0"]
                  [clj-time "0.14.0"]
                  [cljs-ajax "0.7.2"]
                  [compojure "1.6.0"]
